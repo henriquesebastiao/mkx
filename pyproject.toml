@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "mkx"
+version = "0.1.0"
+description = "Proof of Concept of RouterOS v6.42 Critical Vulnerability (CVE-2018-14847)"
+authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+typer = "^0.14.0"
+pydantic = "^2.10.2"
+pysnmp = "^7.1.13"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.12.2"
+ruff = "^0.8.1"
+
+[tool.poetry.scripts]
+mkx = "mkx.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.ruff.lint.per-file-ignores]
+"*.py" = ["F403", "E722", "PLW3201", "PLW0603", "PLW0602"]
+"snmp.py" = ["PLR2004"]
+
+[tool.taskipy.tasks]
+lint = 'ruff check .; ruff check . --diff'
+format = 'ruff format .; ruff check . --fix'
