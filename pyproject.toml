@@ -37,6 +37,7 @@ quote-style = 'single'
 [tool.ruff.lint.per-file-ignores]
 "*.py" = ["F403", "E722", "PLW3201", "PLW0603", "PLW0602"]
 "snmp.py" = ["PLR2004"]
+"ddos.py" = ["PLR0913", "PLR0917"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'

@@ -18,6 +18,7 @@ console = Console()
 app.add_typer(exploit.command, name='exploit')
 app.add_typer(mac_server_discover.command, name='discover')
 app.add_typer(snmp.command, name='snmp')
+app.add_typer(ddos.command, name='ddos')
 
 
 def get_version(value: bool):
