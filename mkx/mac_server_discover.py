@@ -7,7 +7,7 @@ import rich
 import rich.table
 import typer
 
-from mkx import settings
+from mkx.core import settings
 
 MAC_START = b'\x00\x01\x00\x06'
 IDENTITY_START = b'\x00\x05\x00'

@@ -4,8 +4,8 @@ import typer
 from rich import print
 from rich.console import Console
 
-from mkx import exploit, mac_server_discover, snmp
-from mkx.settings import __version__
+from mkx import ddos, exploit, mac_server_discover, snmp
+from mkx.core.settings import __version__
 
 app = typer.Typer(
     help='Scripts for auditing Mikrotik routers.',
