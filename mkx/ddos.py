@@ -5,9 +5,8 @@ from typing import Annotated
 
 import typer
 
-# WARNING: Running the colored implication with rich during
-# the attack causes a significant loss in performance,
-# which is why the method with ANSI characters was adopted.
+# WARNING: Running rich color printing during the attack causes a significant
+# performance loss, which is why the ANSI character method was adopted.
 
 RESET = '\033[0m'
 BOLD = '\033[1m'
