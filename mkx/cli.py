@@ -4,8 +4,9 @@ import typer
 from rich import print
 from rich.console import Console
 
-from mkx import ddos, exploit, kill_web_server, mac_server_discover, snmp
+from mkx.attacks import ddos, exploit, kill_web_server
 from mkx.core.settings import __version__
+from mkx.discovery import mac_server_discover, snmp
 
 app = typer.Typer(
     help='Scripts for auditing Mikrotik routers.',
@@ -35,7 +36,10 @@ def get_version(value: bool):
         print(
             f'[bold blue]mkx[/bold blue] version: [green]{__version__}[/green]'
         )
-        print('Scripts for auditing Mikrotik routers.')
+        print(
+            'Tool for auditing Mikrotik routers, searching for vulnerabilities'
+            ' and information about the target device.'
+        )
 
 
 @app.callback(
