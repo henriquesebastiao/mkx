@@ -177,7 +177,6 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
-decript.py
-test.py
+.tests/
 tasks.md
 *.json

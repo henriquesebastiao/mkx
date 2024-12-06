@@ -10,6 +10,7 @@ python = "^3.12"
 typer = "^0.14.0"
 pydantic = "^2.10.2"
 pysnmp = "^7.1.13"
+requests = "^2.32.3"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -38,6 +39,8 @@ quote-style = 'single'
 "*.py" = ["F403", "E722", "PLW3201", "PLW0603", "PLW0602"]
 "snmp.py" = ["PLR2004", "PLR0912", "PLR0915"]
 "ddos.py" = ["PLR0913", "PLR0917"]
+"helps.py" = ["E501"]
+"kill_web_server.py" = ["E501"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'
