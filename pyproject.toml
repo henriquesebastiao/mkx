@@ -1,9 +1,26 @@
 [tool.poetry]
 name = "mkx"
 version = "0.1.0"
-description = "Proof of Concept of RouterOS v6.42 Critical Vulnerability (CVE-2018-14847)"
+description = "Tool for auditing Mikrotik routers, searching for vulnerabilities and information about the target device."
 authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
 readme = "README.md"
+packages = [{include = "mkx"}]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Telecommunications Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Internet"
+]
+
+[tool.poetry.urls]
+"Repository" = "https://github.com/henriquesebastiao/mkx"
+"Bug Tracker" = "https://github.com/henriquesebastiao/mkx/issues"
 
 [tool.poetry.dependencies]
 python = "^3.12"
