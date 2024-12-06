@@ -158,7 +158,7 @@ def main(
             '--json',
             '-j',
             help='Saves the data obtained when searching'
-            ' for information on a network in a JSON file.'
+            ' for information on a network in a JSON file.',
         ),
     ] = False,
     silent: Annotated[
@@ -168,7 +168,7 @@ def main(
             '-s',
             help='It does not perform verbose printing when searching'
             ' for information on a network, but saves a'
-            ' JSON file with results at the end..'
+            ' JSON file with results at the end..',
         ),
     ] = False,
 ):
@@ -269,9 +269,9 @@ def main(
                 file = save_snmp(output)
                 if silent:
                     rich.print(
-                        f'[bold green][[/bold green]'
-                        f'[bold yellow]+[/bold yellow]'
-                        f'[bold green]][/bold green]'
+                        '[bold green][[/bold green]'
+                        '[bold yellow]+[/bold yellow]'
+                        '[bold green]][/bold green]'
                         ' Search completed'
                     )
                 rich.print(
