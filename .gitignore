@@ -180,3 +180,4 @@ pyrightconfig.json
 decript.py
 test.py
 tasks.md
+*.json
