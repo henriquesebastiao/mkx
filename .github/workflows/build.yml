@@ -30,5 +30,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}/cli:latest
+          tags: ghcr.io/${{ github.repository }}:latest
           platforms: linux/amd64
