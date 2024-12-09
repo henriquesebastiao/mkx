@@ -9,14 +9,15 @@ from mkx.core.settings import __version__
 from mkx.discovery import mac_server_discover, snmp
 
 app = typer.Typer(
-    help='Scripts for auditing Mikrotik routers.',
+    help='Tool for auditing Mikrotik routers, searching '
+    'for vulnerabilities and information about the target device.',
     no_args_is_help=True,
     rich_markup_mode='rich',
 )
 
 console = Console()
 
-app.add_typer(exploit.command, name='exploit', rich_help_panel='Attacks')
+app.add_typer(exploit.command, name='exploit', rich_help_panel='Exploits')
 app.add_typer(
     mac_server_discover.command,
     name='discover',
@@ -25,9 +26,9 @@ app.add_typer(
 app.add_typer(
     snmp.command, name='snmp', rich_help_panel='Obtaining Information'
 )
-app.add_typer(ddos.command, name='ddos', rich_help_panel='Attacks')
+app.add_typer(ddos.command, name='ddos', rich_help_panel='Exploits')
 app.add_typer(
-    kill_web_server.command, name='kill-web-server', rich_help_panel='Attacks'
+    kill_web_server.command, name='kill-web-server', rich_help_panel='Exploits'
 )
 
 

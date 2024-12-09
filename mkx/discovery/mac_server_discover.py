@@ -8,6 +8,7 @@ import rich.table
 import typer
 
 from mkx.core import settings
+from mkx.core.helps import DISCOVER_HELP
 
 MAC_START = b'\x00\x01\x00\x06'
 IDENTITY_START = b'\x00\x05\x00'
@@ -22,7 +23,9 @@ INTERFACE_END = b'\x00\x11\x00'
 search = True
 
 command = typer.Typer(
-    help='Search for Mikrotik devices on the network (MAC Servers).'
+    help=DISCOVER_HELP,
+    short_help='Search for devices on the network '
+    'via MikroTik Neighbor Discovery (MNDP).',
 )
 console = rich.console.Console()
 

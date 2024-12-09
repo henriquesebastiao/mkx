@@ -5,6 +5,8 @@ from typing import Annotated
 
 import typer
 
+from mkx.core.helps import DDOS_HTTP_HELP
+
 # WARNING: Running rich color printing during the attack causes a significant
 # performance loss, which is why the ANSI character method was adopted.
 
@@ -15,12 +17,16 @@ YELLOW = '\033[33m'
 GREEN = '\033[32m'
 
 command = typer.Typer(
-    help='Perform targeted DDoS attacks on Mikrotik devices',
+    help='Perform targeted DDoS attacks on devices.',
     no_args_is_help=True,
 )
 
 
-@command.command()
+@command.command(
+    help=DDOS_HTTP_HELP,
+    short_help='Sends arbitrary packets via TCP '
+    'to the device causing CPU overload.',
+)
 def http(
     target: Annotated[
         str, typer.Argument(help='Target IP address or domain.')

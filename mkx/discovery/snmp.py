@@ -18,6 +18,7 @@ from pysnmp.hlapi.v3arch.asyncio import (
     get_cmd,
 )
 
+from mkx.core.helps import SNMP_HELP
 from mkx.core.network import check_cidr, check_ip, get_ips_nmap_grepable_output
 
 
@@ -142,7 +143,8 @@ async def snmp(
 
 
 command = typer.Typer(
-    help='Get information via SNMP from Mikrotik '
+    help=SNMP_HELP,
+    short_help='Get information via SNMP from '
     'devices with default community (public).',
     no_args_is_help=True,
 )
