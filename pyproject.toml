@@ -58,6 +58,7 @@ quote-style = 'single'
 "ddos.py" = ["PLR0913", "PLR0917"]
 "helps.py" = ["E501"]
 "kill_web_server.py" = ["E501"]
+"network.py" = ["PLR2004"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'

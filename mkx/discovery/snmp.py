@@ -1,5 +1,6 @@
 import asyncio
 import json as json_m
+import os
 import sys
 from datetime import datetime
 from ipaddress import IPv4Network
@@ -16,6 +17,8 @@ from pysnmp.hlapi.v3arch.asyncio import (
     UdpTransportTarget,
     get_cmd,
 )
+
+from mkx.core.network import check_cidr, check_ip, get_ips_nmap_grepable_output
 
 
 def fint(value):
@@ -147,7 +150,14 @@ command = typer.Typer(
 
 @command.callback(invoke_without_command=True)
 def main(
-    target: Annotated[str, typer.Argument(help='Target IP address.')],
+    target: Annotated[
+        str,
+        typer.Argument(
+            help='Target IP address or network, or the path to an nmap '
+            'output file in grepable format, '
+            'containing the target IP addresses.'
+        ),
+    ],
     community: Annotated[
         str, typer.Argument(help='Information submission community.')
     ] = 'public',
@@ -172,7 +182,7 @@ def main(
         ),
     ] = False,
 ):
-    if '/' not in target:
+    if check_ip(target):
         rich.print(
             '[bold green][[/bold green]'
             '[bold yellow]*[/bold yellow]'
@@ -200,7 +210,37 @@ def main(
             )
             print(formatted_result)
     else:
-        network = [str(ip) for ip in IPv4Network(target, strict=False).hosts()]
+        network = []
+
+        if check_cidr(target):
+            network = [
+                str(ip) for ip in IPv4Network(target, strict=False).hosts()
+            ]
+        elif os.path.isfile(target):
+            network = list(get_ips_nmap_grepable_output(target))
+        else:
+            rich.print(
+                '[bold red][[/bold red]'
+                '[bold yellow]*[/bold yellow]'
+                '[bold red]][/bold red]'
+                ' You have entered an [bold red]invalid[/bold red] target.'
+            )
+            rich.print(
+                '[bold red][[/bold red]'
+                '[bold yellow]*[/bold yellow]'
+                '[bold red]][/bold red]'
+                ' You should enter an IP address, network '
+                'or the path to an nmap output file in grepable format.'
+            )
+            rich.print(
+                '[bold red][[/bold red]'
+                '[bold yellow]*[/bold yellow]'
+                '[bold red]][/bold red]'
+                ' Run [bold white]mkx snmp '
+                '--help[/bold white] for more information.'
+            )
+            typer.Exit(1)
+
         output = dict()
 
         if silent:
@@ -275,9 +315,9 @@ def main(
                         ' Search completed'
                     )
                 rich.print(
-                    f'[bold green][[/bold green]'
-                    f'[bold yellow]+[/bold yellow]'
-                    f'[bold green]][/bold green]'
+                    '[bold green][[/bold green]'
+                    '[bold yellow]+[/bold yellow]'
+                    '[bold green]][/bold green]'
                     f' Result saved in [yellow]{file}[/yellow]'
                 )
         except KeyboardInterrupt:
@@ -290,9 +330,9 @@ def main(
             if json or silent:
                 file = save_snmp(output)
                 rich.print(
-                    f'[bold green][[/bold green]'
-                    f'[bold yellow]+[/bold yellow]'
-                    f'[bold green]][/bold green]'
+                    '[bold green][[/bold green]'
+                    '[bold yellow]+[/bold yellow]'
+                    '[bold green]][/bold green]'
                     f' Result saved in [yellow]{file}[/yellow]'
                 )
                 typer.Exit(1)
