@@ -1,5 +1,11 @@
 # MKX - Mikrotik Exploit
 
+[![Build](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml/badge.svg)](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml)
+[![Static Badge](https://img.shields.io/badge/status-stable-%232FBF50)](https://github.com/henriquesebastiao/mkx)
+[![GitHub Release](https://img.shields.io/github/v/release/henriquesebastiao/mkx?color=blue)](https://github.com/henriquesebastiao/mkx/releases)
+[![GitHub License](https://img.shields.io/github/license/henriquesebastiao/mkx?color=blue)](https://github.com/henriquesebastiao/mkx/blob/main/LICENSE)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=henriquesebastiao%2Fmkx&label=repository%20visits&countColor=%231182c3&style=flat)](https://github.com/henriquesebastiao/mkx)
+
 MKX is a tool for auditing Mikrotik routers, searching for vulnerabilities and information about the target device.
 
 To find vulnerabilities in Mikrotik devices on the network, MKX can scan target devices using protocols such as MNDP and SNMP, seeking information about the hardware and RouterOS of the devices. The information obtained here can be of great value to anyone analyzing network security. For example, you can find out the firmware version of the device, and then search for any CVEs for this specific version. But below you will see that MKX already implements attacks from some known CVEs.
