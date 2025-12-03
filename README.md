@@ -1,4 +1,4 @@
-# MKX - Mikrotik Exploit
+# MKX - MikroTik Exploit
 
 [![Build](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml/badge.svg)](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml)
 [![Static Badge](https://img.shields.io/badge/status-stable-%232FBF50)](https://github.com/henriquesebastiao/mkx)
@@ -6,9 +6,9 @@
 [![GitHub License](https://img.shields.io/github/license/henriquesebastiao/mkx?color=blue)](https://github.com/henriquesebastiao/mkx/blob/main/LICENSE)
 [![Visitors](https://api.visitorbadge.io/api/visitors?path=henriquesebastiao%2Fmkx&label=repository%20visits&countColor=%231182c3&style=flat)](https://github.com/henriquesebastiao/mkx)
 
-MKX is a tool for auditing Mikrotik routers, searching for vulnerabilities and information about the target device.
+MKX is a tool for auditing MikroTik routers, searching for vulnerabilities and information about the target device.
 
-To find vulnerabilities in Mikrotik devices on the network, MKX can scan target devices using protocols such as MNDP and SNMP, seeking information about the hardware and RouterOS of the devices. The information obtained here can be of great value to anyone analyzing network security. For example, you can find out the firmware version of the device, and then search for any CVEs for this specific version. But below you will see that MKX already implements attacks from some known CVEs.
+To find vulnerabilities in MikroTik devices on the network, MKX can scan target devices using protocols such as MNDP and SNMP, seeking information about the hardware and RouterOS of the devices. The information obtained here can be of great value to anyone analyzing network security. For example, you can find out the firmware version of the device, and then search for any CVEs for this specific version. But below you will see that MKX already implements attacks from some known CVEs.
 
 > [!WARNING]
 > This vulnerability analysis script is provided "as is" and is intended solely for educational, research, and testing purposes in controlled environments with proper authorization. Before running this script, please ensure that you have the necessary permission to perform security testing on the target devices. The responsibility for using this script lies entirely with the user. The author is not responsible for any damages, losses, or legal consequences arising from improper or unauthorized use of this code.
@@ -17,8 +17,8 @@ To find vulnerabilities in Mikrotik devices on the network, MKX can scan target 
 
 ### Obtaining Information
 
-- Discovery of Mikrotik devices on the local network through the MikroTik Neighbor Discovery (MNDP) protocol that runs on UDP port 5678.
-- Obtaining information from a specific Mikrotik device or all devices in an IP range using the SNMP protocol.
+- Discovery of MikroTik devices on the local network through the MikroTik Neighbor Discovery (MNDP) protocol that runs on UDP port 5678.
+- Obtaining information from a specific MikroTik device or all devices in an IP range using the SNMP protocol.
 
 ### Attacks
 
