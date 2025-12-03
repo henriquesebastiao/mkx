@@ -1,4 +1,4 @@
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 NEIGHBOR_PORT = 5678
 WINBOX_DEFAULT_PORT = 8291
