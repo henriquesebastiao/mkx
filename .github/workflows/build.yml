@@ -46,7 +46,14 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
 
   build-and-push:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      actions: write
+      discussions: write
     steps:
       - name: Check out code
         uses: actions/checkout@v4
