@@ -1,13 +1,51 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows: ["Ruff"]
-    types: [completed]
-    branches:
-        - 'main'
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
 
 jobs:
+  publish:
+    name: Publish Package to PyPi
+    runs-on: ubuntu-latest
+    needs: generate_changelog
+    environment:
+      name: pypi
+      url: https://pypi.org/project/mkx/
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      actions: write
+      discussions: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      - name: Package project
+        run: poetry build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
   build-and-push:
     runs-on: ubuntu-latest
     steps:
