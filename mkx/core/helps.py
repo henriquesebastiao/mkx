@@ -69,3 +69,31 @@ mkx snmp 172.16.0.1/24 -j
 mkx snmp 172.16.0.1/24 -s
 mkx snmp /home/user/nmap-out.txt
 """
+
+UPNP_DISCOVER_HELP = """
+Search for UPnP-enabled devices on the network via SSDP (Simple Service Discovery Protocol).
+
+This command sends a multicast M-SEARCH request to all devices in the local network
+and retrieves UPnP service descriptions, control URLs and device metadata.
+It allows identifying devices that expose UPnP APIs, port mappings, media services
+and WPS information.
+
+Two discovery modes are available:
+- Standard Discovery: Parses raw SSDP responses manually and loads each advertised UPnP XML.
+- Short Discovery: Uses the upnpy library to retrieve essential UPnP metadata more quickly.
+
+It is possible to discover the following information from the found devices:
+- Device Type
+- Friendly Name
+- Manufacturer & Model Information
+- UPnP Service List (SCPD URL, control URL and available SOAP actions)
+- Base URL of the device
+
+When using the standard mode, XML files are fetched and parsed individually,
+revealing the full API exposed by each device.
+
+[bold green]Examples:[/bold green]
+mkx upnp discover
+mkx upnp discover --short
+mkx upnp discover -s
+"""

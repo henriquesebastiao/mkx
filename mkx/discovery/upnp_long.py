@@ -12,9 +12,10 @@ import upnpy
 from rich import print
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
+from mkx.core.helps import UPNP_DISCOVER_HELP
+
 command = typer.Typer(
-    help='MENSAGEM DE AJUDA',
-    short_help='Search for devices on the network with the UPnP port open.',
+    help='Explore devices on the network with the Universal Plug and Play (UPnP) port open.',
 )
 
 
@@ -459,12 +460,14 @@ def parse_locations(locations):
                 print('[!] Timeout reading from %s' % location)
 
 
-@command.callback(invoke_without_command=True)
-def main(
+@command.command(help=UPNP_DISCOVER_HELP)
+def discover(
     short: Annotated[
         bool,
         typer.Option(
-            '--short', '-s', help='Prints a table with the search results.'
+            '--short',
+            '-s',
+            help='Returns shorter information about UPnP services on the network.',
         ),
     ] = False,
 ):
