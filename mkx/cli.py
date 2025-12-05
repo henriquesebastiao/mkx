@@ -6,7 +6,7 @@ from rich.console import Console
 
 from mkx.attacks import ddos, exploit, kill_web_server
 from mkx.core.settings import __version__
-from mkx.discovery import mac_server_discover, snmp, upnp_long
+from mkx.discovery import mac_server_discover, snmp, upnp
 
 app = typer.Typer(
     help='Tool for auditing Mikrotik routers, searching '
@@ -27,7 +27,7 @@ app.add_typer(
     snmp.command, name='snmp', rich_help_panel='Obtaining Information'
 )
 app.add_typer(
-    upnp_long.command, name='upnp', rich_help_panel='Obtaining Information'
+    upnp.command, name='upnp', rich_help_panel='Obtaining Information'
 )
 app.add_typer(ddos.command, name='ddos', rich_help_panel='Exploits')
 app.add_typer(

@@ -476,6 +476,7 @@ def discover(
     """
     if short:
         upnp = upnpy.UPnP()
+        hosts_found = set()
 
         with Progress(
             SpinnerColumn(),
@@ -494,11 +495,14 @@ def discover(
             ' Discovery complete'
         )
 
+        for device in devices:
+            hosts_found.add(device.host)
+
         print(
             '[bold green][[/bold green]'
             '[bold yellow]+[/bold yellow]'
             '[bold green]][/bold green]'
-            f' {len(devices)} locations found:\n'
+            f' {len(devices)} locations found in {len(hosts_found)} hosts:'
         )
 
         for device in devices:

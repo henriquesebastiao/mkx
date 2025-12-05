@@ -60,7 +60,7 @@ quote-style = 'single'
 "helps.py" = ["E501"]
 "kill_web_server.py" = ["E501"]
 "network.py" = ["PLR2004"]
-"upnp_long.py" = ["PLR2004", "E501", "PLR1702", "PLR0915", "PLR0912"]
+"upnp.py" = ["PLR2004", "E501", "PLR1702", "PLR0915", "PLR0912"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'
