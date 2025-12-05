@@ -668,6 +668,17 @@ files = [
 typing-extensions = ">=4.12.0"
 
 [[package]]
+name = "upnpy"
+version = "1.1.8"
+description = "Lightweight UPnP client library for Python."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "UPnPy-1.1.8.tar.gz", hash = "sha256:f43acab6271c25d8073d0e8549cd62a349abdd0a8cb9c21d036bea6132eb632e"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.5.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -688,4 +699,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "ff1f4940c5b5fb018de5d3c188013cb1c114dbf98f81783c0acb4ef3d2c4d18e"
+content-hash = "86cc672c41e3f1dd2acc30e328fb01145d60c849a8cd161b937ddbaf1e579905"

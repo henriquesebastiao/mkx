@@ -3,10 +3,12 @@ import re
 import socket
 import struct
 import xml.etree.ElementTree as ET
+from typing import Annotated
 from urllib.parse import urlparse
 
 import requests
 import typer
+import upnpy
 from rich import print
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
@@ -458,40 +460,87 @@ def parse_locations(locations):
 
 
 @command.callback(invoke_without_command=True)
-def main():
+def main(
+    short: Annotated[
+        bool,
+        typer.Option(
+            '--short', '-s', help='Prints a table with the search results.'
+        ),
+    ] = False,
+):
     """Discover upnp services on the LAN and print out information needed to investigate them further.
     Also prints out port mapping information if it exists.
     """
-    with Progress(
-        SpinnerColumn(),
-        TextColumn('[progress.description]{task.description}'),
-        transient=True,
-    ) as progress:
-        progress.add_task(description='Discovering UPnP locations', total=None)
-        locations = discover_pnp_locations()
+    if short:
+        upnp = upnpy.UPnP()
 
-    print(
-        '[bold green][[/bold green]'
-        '[bold yellow]*[/bold yellow]'
-        '[bold green]][/bold green]'
-        ' Discovery complete'
-    )
+        with Progress(
+            SpinnerColumn(),
+            TextColumn('[progress.description]{task.description}'),
+            transient=True,
+        ) as progress:
+            progress.add_task(
+                description='Discovering UPnP locations', total=None
+            )
+            devices = upnp.discover()
 
-    print(
-        '[bold green][[/bold green]'
-        '[bold yellow]+[/bold yellow]'
-        '[bold green]][/bold green]'
-        f' {len(locations)} locations found:'
-    )
+        print(
+            '[bold green][[/bold green]'
+            '[bold yellow]*[/bold yellow]'
+            '[bold green]][/bold green]'
+            ' Discovery complete'
+        )
 
-    for location in locations:
-        print(f'\t-> {location}')
+        print(
+            '[bold green][[/bold green]'
+            '[bold yellow]+[/bold yellow]'
+            '[bold green]][/bold green]'
+            f' {len(devices)} locations found:\n'
+        )
 
-    parse_locations(locations)
+        for device in devices:
+            print(
+                '[bold][[/bold]'
+                '[bold green]+[/bold green]'
+                '[bold]][/bold]'
+                f' {device.host}:{device.port} --> {device.friendly_name} - BASE_URL: {device.base_url}'
+            )
 
-    print(
-        '[bold green][[/bold green]'
-        '[bold yellow]*[/bold yellow]'
-        '[bold green]][/bold green]'
-        ' END.'
-    )
+            print(f'{device.response}')
+
+    else:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn('[progress.description]{task.description}'),
+            transient=True,
+        ) as progress:
+            progress.add_task(
+                description='Discovering UPnP locations', total=None
+            )
+            locations = discover_pnp_locations()
+
+        print(
+            '[bold green][[/bold green]'
+            '[bold yellow]*[/bold yellow]'
+            '[bold green]][/bold green]'
+            ' Discovery complete'
+        )
+
+        print(
+            '[bold green][[/bold green]'
+            '[bold yellow]+[/bold yellow]'
+            '[bold green]][/bold green]'
+            f' {len(locations)} locations found:'
+        )
+
+        for location in locations:
+            print(f'\t-> {location}')
+
+        parse_locations(locations)
+
+        print(
+            '[bold green][[/bold green]'
+            '[bold yellow]*[/bold yellow]'
+            '[bold green]][/bold green]'
+            ' END.'
+        )
