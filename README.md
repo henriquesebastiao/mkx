@@ -59,36 +59,34 @@ mkx [COMMAND] --help
 MKX is developed using the [Typer](https://typer.tiangolo.com/) library, so you'll have a CLI that, as the Typer developers say, *"You'll love using!"* ✨.
 
 ```txt
-$ poetry run mkx --help     
-                                                                                
- Usage: mkx [OPTIONS] COMMAND [ARGS]...                                         
-                                                                                
- Tool for auditing MikroTik routers, searching for vulnerabilities and          
- information about the target device.                                           
-                                                                                
-╭─ Options ────────────────────────────────────────────────────────────────────╮
-│ --version             -v        Returns the version of mkx.                  │
-│ --install-completion            Install completion for the current shell.    │
-│ --show-completion               Show completion for the current shell, to    │
-│                                 copy it or customize the installation.       │
-│ --help                          Show this message and exit.                  │
-╰──────────────────────────────────────────────────────────────────────────────╯
-╭─ About ──────────────────────────────────────────────────────────────────────╮
-│ doc               Open the project repository on GitHub.                     │
-╰──────────────────────────────────────────────────────────────────────────────╯
-╭─ Exploits ───────────────────────────────────────────────────────────────────╮
-│ exploit           Search for credentials of a RouterOS v6.42 vulnerable      │
-│                   (CVE-2018-14847).                                          │
-│ ddos              Perform targeted DDoS attacks on devices.                  │
-│ kill-web-server   Attack that crashes the web interface of RouterOS versions │
-│                   6 > 6.49.10 (CVE-2023-30800).                              │
-╰──────────────────────────────────────────────────────────────────────────────╯
-╭─ OSINT - Obtaining Information ──────────────────────────────────────────────╮
-│ discover          Search for devices on the network via MikroTik Neighbor    │
-│                   Discovery (MNDP).                                          │
-│ snmp              Get information via SNMP from devices with default         │
-│                   community (public).                                        │
-│ upnp              Explore devices on the network with the Universal Plug and │
-│                   Play (UPnP) port open.                                     │
-╰──────────────────────────────────────────────────────────────────────────────╯
+$ poetry run mkx --help
+                                                                                              
+ Usage: mkx [OPTIONS] COMMAND [ARGS]...                                                       
+                                                                                              
+ Tool for auditing MikroTik routers, searching for vulnerabilities and information about the  
+ target device.                                                                               
+                                                                                              
+╭─ Options ──────────────────────────────────────────────────────────────────────────────────╮
+│ --version             -v        Returns the version of mkx.                                │
+│ --install-completion            Install completion for the current shell.                  │
+│ --show-completion               Show completion for the current shell, to copy it or       │
+│                                 customize the installation.                                │
+│ --help                          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ About ────────────────────────────────────────────────────────────────────────────────────╮
+│ doc               Open the project repository on GitHub.                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Exploits ─────────────────────────────────────────────────────────────────────────────────╮
+│ exploit           Search for credentials of a RouterOS v6.42 vulnerable (CVE-2018-14847).  │
+│ ddos              Perform targeted DDoS attacks on devices.                                │
+│ kill-web-server   Attack that crashes the web interface of RouterOS versions 6 > 6.49.10   │
+│                   (CVE-2023-30800).                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ OSINT - Obtaining Information ────────────────────────────────────────────────────────────╮
+│ discover          Search for devices on the network via MikroTik Neighbor Discovery        │
+│                   (MNDP).                                                                  │
+│ snmp              Get information via SNMP from devices with default community (public).   │
+│ upnp              Explore devices on the network with the Universal Plug and Play (UPnP)   │
+│                   port open.                                                               │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
