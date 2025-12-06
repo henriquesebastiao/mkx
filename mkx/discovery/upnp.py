@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from typing import Annotated
 from urllib.parse import urlparse
 
-import requests
+import httpx
 import typer
 import upnpy
 from rich import print
@@ -102,7 +102,7 @@ def find_port_mappings(p_url, p_service):
             'Soapaction': '"' + p_service + '#GetGenericPortMappingEntry' + '"',
             'Content-type': 'text/xml;charset="utf-8"',
         }
-        resp = requests.post(p_url, data=payload, headers=soapActionHeader)
+        resp = httpx.post(p_url, data=payload, headers=soapActionHeader)
 
         if resp.status_code != 200:
             return
@@ -163,7 +163,7 @@ def find_directories(p_url, p_service):
         'Content-type': 'text/xml;charset="utf-8"',
     }
 
-    resp = requests.post(p_url, data=payload, headers=soapActionHeader)
+    resp = httpx.post(p_url, data=payload, headers=soapActionHeader)
     if resp.status_code != 200:
         print('\t\tRequest failed with status: %d' % resp.status_code)
         return
@@ -216,7 +216,7 @@ def find_device_info(p_url, p_service):
         'Content-type': 'text/xml;charset="utf-8"',
     }
 
-    resp = requests.post(p_url, data=payload, headers=soapActionHeader)
+    resp = httpx.post(p_url, data=payload, headers=soapActionHeader)
     if resp.status_code != 200:
         print('\t[-] Request failed with status: %d' % resp.status_code)
         return
@@ -264,7 +264,7 @@ def parse_locations(locations):
         for location in locations:
             print('[+] Loading %s...' % location)
             try:
-                resp = requests.get(location, timeout=2)
+                resp = httpx.get(location, timeout=2)
                 if resp.headers.get('server'):
                     print('\t-> Server String: %s' % resp.headers.get('server'))
                 else:
@@ -346,7 +346,7 @@ def parse_locations(locations):
                     print('\t\t=> API: %s' % serviceURL)
 
                     # read in the SCP XML
-                    resp = requests.get(serviceURL, timeout=2)
+                    resp = httpx.get(serviceURL, timeout=2)
                     try:
                         serviceXML = ET.fromstring(resp.text)
                     except:
@@ -417,9 +417,9 @@ def parse_locations(locations):
                     print('\t[+] M1 available. Looking up device information...')
                     find_device_info(wps_ctr, wps_service)
 
-            except requests.exceptions.ConnectionError:
+            except httpx.ConnectError:
                 print('[!] Could not load %s' % location)
-            except requests.exceptions.ReadTimeout:
+            except httpx.ReadTimeout:
                 print('[!] Timeout reading from %s' % location)
 
 
