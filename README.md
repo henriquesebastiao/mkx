@@ -66,7 +66,7 @@ When you run `mkx --help` you will see the main available commands separated int
 - `OSINT - Obtaining Information` - Commands for obtaining information about devices and services on the network.
 
 ```console
-$ poetry run mkx --help
+$ mkx --help
                                                                                               
  Usage: mkx [OPTIONS] COMMAND [ARGS]...                                                       
                                                                                               
@@ -105,7 +105,7 @@ Here are some examples of subcommand help messages:
 ### Command to discover information about devices on the network via SNMP
 
 ```console
-$ poetry run mkx snmp --help
+$ mkx snmp --help
                                                                                               
  Usage: mkx snmp [OPTIONS] TARGET [COMMUNITY] [PORT] COMMAND [ARGS]...                        
                                                                                               
@@ -151,7 +151,7 @@ $ poetry run mkx snmp --help
 ### Command to perform a DDoS attack via TCP against a specific host.
 
 ```console
-$ poetry run mkx ddos tcp --help
+$ mkx ddos tcp --help
                                                                                               
  Usage: mkx ddos tcp [OPTIONS] TARGET [PORT]                                                  
                                                                                               
