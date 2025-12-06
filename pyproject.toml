@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mkx"
 version = "0.1.2"
-description = "Tool for auditing Mikrotik routers, searching for vulnerabilities and information about the target device."
+description = "Tool for auditing MikroTik routers, searching for vulnerabilities and information about the target device."
 authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
 readme = "README.md"
 packages = [{include = "mkx"}]
@@ -28,6 +28,8 @@ typer = "^0.20.0"
 pydantic = "^2.12.5"
 pysnmp = "^7.1.22"
 requests = "^2.32.5"
+upnpy = "^1.1.8"
+prompt-toolkit = "^3.0.52"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -42,7 +44,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
-line-length = 79
+line-length = 99
 
 [tool.ruff.lint]
 preview = true
@@ -59,6 +61,7 @@ quote-style = 'single'
 "helps.py" = ["E501"]
 "kill_web_server.py" = ["E501"]
 "network.py" = ["PLR2004"]
+"upnp.py" = ["PLR2004", "E501", "PLR1702", "PLR0915", "PLR0912"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'

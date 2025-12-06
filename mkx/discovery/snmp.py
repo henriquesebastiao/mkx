@@ -144,8 +144,7 @@ async def snmp(
 
 command = typer.Typer(
     help=SNMP_HELP,
-    short_help='Get information via SNMP from '
-    'devices with default community (public).',
+    short_help='Get information via SNMP from devices with default community (public).',
     no_args_is_help=True,
 )
 
@@ -160,9 +159,7 @@ def main(
             'containing the target IP addresses.'
         ),
     ],
-    community: Annotated[
-        str, typer.Argument(help='Information submission community.')
-    ] = 'public',
+    community: Annotated[str, typer.Argument(help='Information submission community.')] = 'public',
     port: Annotated[int, typer.Argument(help='SNMP UDP port.')] = 161,
     json: Annotated[
         bool,
@@ -215,9 +212,7 @@ def main(
         network = []
 
         if check_cidr(target):
-            network = [
-                str(ip) for ip in IPv4Network(target, strict=False).hosts()
-            ]
+            network = [str(ip) for ip in IPv4Network(target, strict=False).hosts()]
         elif os.path.isfile(target):
             network = list(get_ips_nmap_grepable_output(target))
         else:

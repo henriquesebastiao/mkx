@@ -8,7 +8,7 @@ import rich.table
 import typer
 
 from mkx.core import settings
-from mkx.core.helps import DISCOVER_HELP
+from mkx.core.helps import MIKROTIK_DISCOVER_HELP
 
 MAC_START = b'\x00\x01\x00\x06'
 IDENTITY_START = b'\x00\x05\x00'
@@ -23,9 +23,8 @@ INTERFACE_END = b'\x00\x11\x00'
 search = True
 
 command = typer.Typer(
-    help=DISCOVER_HELP,
-    short_help='Search for devices on the network '
-    'via MikroTik Neighbor Discovery (MNDP).',
+    help=MIKROTIK_DISCOVER_HELP,
+    short_help='Search for devices on the network via MikroTik Neighbor Discovery (MNDP).',
 )
 console = rich.console.Console()
 
@@ -33,9 +32,7 @@ console = rich.console.Console()
 def discovery(sock_discovery):
     global search
     while search:
-        sock_discovery.sendto(
-            b'\x00\x00\x00\x00', ('255.255.255.255', settings.NEIGHBOR_PORT)
-        )
+        sock_discovery.sendto(b'\x00\x00\x00\x00', ('255.255.255.255', settings.NEIGHBOR_PORT))
         time.sleep(1)
 
 
@@ -43,9 +40,7 @@ def discovery(sock_discovery):
 def main(
     table: Annotated[
         bool,
-        typer.Option(
-            '--table', '-t', help='Prints a table with the search results.'
-        ),
+        typer.Option('--table', '-t', help='Prints a table with the search results.'),
     ] = False,
 ):
     table_result = rich.table.Table(
@@ -69,7 +64,7 @@ def main(
         '[bold green][[/bold green]'
         '[bold yellow]*[/bold yellow]'
         '[bold green]][/bold green]'
-        ' Looking for Mikrotik devices (MAC servers)\n'
+        ' Looking for MikroTik devices (MAC servers)\n'
     )
 
     global search
@@ -89,34 +84,24 @@ def main(
 
                     # Get Identity of device
                     start = data.index(IDENTITY_START) + 4
-                    identity = data[start : data.index(IDENTITY_END)].decode(
-                        encoding='utf-8'
-                    )
+                    identity = data[start : data.index(IDENTITY_END)].decode(encoding='utf-8')
 
                     # Get RouterOS Version
                     start = data.index(IDENTITY_END) + 4
-                    version = data[start : data.index(VERSION_END)].decode(
-                        encoding='utf-8'
-                    )
+                    version = data[start : data.index(VERSION_END)].decode(encoding='utf-8')
                     version = ' '.join(version.split()[0:2])
 
                     # Get Board model
                     start = data.index(BOARD_START) + 4
-                    model = data[start : data.index(BOARD_END)].decode(
-                        encoding='utf-8'
-                    )
+                    model = data[start : data.index(BOARD_END)].decode(encoding='utf-8')
 
                     # Get Software ID
                     start = data.index(SOFTWARE_ID_START) + 4
-                    software_id = data[start : data.index(BOARD_START)].decode(
-                        encoding='utf-8'
-                    )
+                    software_id = data[start : data.index(BOARD_START)].decode(encoding='utf-8')
 
                     # Get interface
                     start = data.index(INTERFACE_START) + 4
-                    interface = data[start : data.index(INTERFACE_END)].decode(
-                        encoding='utf-8'
-                    )
+                    interface = data[start : data.index(INTERFACE_END)].decode(encoding='utf-8')
 
                     if settings.VERBOSE:
                         rich.print(
@@ -125,9 +110,7 @@ def main(
                             '[bold white]][/bold white]',
                             end=' ',
                         )
-                        rich.print(
-                            f'[bold green]{addr[0]}[/bold green]', end=' --> '
-                        )
+                        rich.print(f'[bold green]{addr[0]}[/bold green]', end=' --> ')
                         print(
                             f'{mac_decoded} - {identity} - {version} - '
                             f'{model} - {software_id} - {interface}'
