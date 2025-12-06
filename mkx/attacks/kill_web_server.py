@@ -30,15 +30,11 @@ command = typer.Typer(
 def main(
     target: Annotated[
         str,
-        typer.Argument(
-            help='Target IP address or list of IP addresses and TCP ports.'
-        ),
+        typer.Argument(help='Target IP address or list of IP addresses and TCP ports.'),
     ],
     https: Annotated[
         bool,
-        typer.Option(
-            '--https', '-s', help='Configure the attack for an https server.'
-        ),
+        typer.Option('--https', '-s', help='Configure the attack for an https server.'),
     ] = False,
 ):
     """

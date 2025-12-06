@@ -24,19 +24,14 @@ command = typer.Typer(
 
 @command.command(
     help=DDOS_HTTP_HELP,
-    short_help='Sends arbitrary packets via TCP '
-    'to the device causing CPU overload.',
+    short_help='Sends arbitrary packets via TCP to the device causing CPU overload.',
 )
 def http(
-    target: Annotated[
-        str, typer.Argument(help='Target IP address or domain.')
-    ],
+    target: Annotated[str, typer.Argument(help='Target IP address or domain.')],
     port: Annotated[int, typer.Argument(help='TCP port to be attacked.')] = 80,
     random: Annotated[
         bool,
-        typer.Option(
-            '--random', '-r', help='Attacks random ports between 1 and 65534.'
-        ),
+        typer.Option('--random', '-r', help='Attacks random ports between 1 and 65534.'),
     ] = False,
     verbose: Annotated[
         bool,
@@ -80,12 +75,7 @@ def http(
                     f':{BOLD}{RED}{port}{RESET}'
                 )
         except KeyboardInterrupt:
-            print(
-                f'\n{BOLD}{GREEN}[{RESET}'
-                f'{BOLD}{YELLOW}-{RESET}'
-                f'{BOLD}{GREEN}]{RESET}'
-                f' Stopping'
-            )
+            print(f'\n{BOLD}{GREEN}[{RESET}{BOLD}{YELLOW}-{RESET}{BOLD}{GREEN}]{RESET} Stopping')
             end_time = datetime.now()
             break
     execution_time = end_time - start_time

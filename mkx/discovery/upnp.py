@@ -99,10 +99,7 @@ def find_port_mappings(p_url, p_service):
         )
 
         soapActionHeader = {
-            'Soapaction': '"'
-            + p_service
-            + '#GetGenericPortMappingEntry'
-            + '"',
+            'Soapaction': '"' + p_service + '#GetGenericPortMappingEntry' + '"',
             'Content-type': 'text/xml;charset="utf-8"',
         }
         resp = requests.post(p_url, data=payload, headers=soapActionHeader)
@@ -178,21 +175,17 @@ def find_directories(p_url, p_service):
             return
 
         xmlRoot = ET.fromstring(containers)
-        containers = xmlRoot.findall(
-            './{urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/}container'
-        )
+        containers = xmlRoot.findall('./{urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/}container')
         for container in containers:
             if (
-                container.find(
-                    './{urn:schemas-upnp-org:metadata-1-0/upnp/}class'
-                ).text.find('object.container')
+                container.find('./{urn:schemas-upnp-org:metadata-1-0/upnp/}class').text.find(
+                    'object.container'
+                )
                 > -1
             ):
                 print(
                     '\t\tStorage Folder: '
-                    + container.find(
-                        './{http://purl.org/dc/elements/1.1/}title'
-                    ).text
+                    + container.find('./{http://purl.org/dc/elements/1.1/}title').text
                 )
     except:
         print('\t\t[!] Failed to parse the response XML')
@@ -228,9 +221,7 @@ def find_device_info(p_url, p_service):
         print('\t[-] Request failed with status: %d' % resp.status_code)
         return
 
-    info_regex = re.compile(
-        '<NewDeviceInfo>(.+)</NewDeviceInfo>', re.IGNORECASE
-    )
+    info_regex = re.compile('<NewDeviceInfo>(.+)</NewDeviceInfo>', re.IGNORECASE)
     encoded_info = info_regex.search(resp.text)
     if not encoded_info:
         print('\t[-] Failed to find the device info')
@@ -275,9 +266,7 @@ def parse_locations(locations):
             try:
                 resp = requests.get(location, timeout=2)
                 if resp.headers.get('server'):
-                    print(
-                        '\t-> Server String: %s' % resp.headers.get('server')
-                    )
+                    print('\t-> Server String: %s' % resp.headers.get('server'))
                 else:
                     print('\t-> No server string')
 
@@ -334,33 +323,23 @@ def parse_locations(locations):
                 wps_service = ''
 
                 print('\t-> Services:')
-                services = xmlRoot.findall(
-                    './/*{urn:schemas-upnp-org:device-1-0}serviceList/'
-                )
+                services = xmlRoot.findall('.//*{urn:schemas-upnp-org:device-1-0}serviceList/')
                 for service in services:
                     print(
                         '\t\t=> Service Type: %s'
-                        % service.find(
-                            './{urn:schemas-upnp-org:device-1-0}serviceType'
-                        ).text
+                        % service.find('./{urn:schemas-upnp-org:device-1-0}serviceType').text
                     )
                     print(
                         '\t\t=> Control: %s'
-                        % service.find(
-                            './{urn:schemas-upnp-org:device-1-0}controlURL'
-                        ).text
+                        % service.find('./{urn:schemas-upnp-org:device-1-0}controlURL').text
                     )
                     print(
                         '\t\t=> Events: %s'
-                        % service.find(
-                            './{urn:schemas-upnp-org:device-1-0}eventSubURL'
-                        ).text
+                        % service.find('./{urn:schemas-upnp-org:device-1-0}eventSubURL').text
                     )
 
                     # Add a lead in '/' if it doesn't exist
-                    scp = service.find(
-                        './{urn:schemas-upnp-org:device-1-0}SCPDURL'
-                    ).text
+                    scp = service.find('./{urn:schemas-upnp-org:device-1-0}SCPDURL').text
                     if scp[0] != '/':
                         scp = '/' + scp
                     serviceURL = parsed.scheme + '://' + parsed.netloc + scp
@@ -374,20 +353,14 @@ def parse_locations(locations):
                         print('\t\t\t[!] Failed to parse the response XML')
                         continue
 
-                    actions = serviceXML.findall(
-                        './/*{urn:schemas-upnp-org:service-1-0}action'
-                    )
+                    actions = serviceXML.findall('.//*{urn:schemas-upnp-org:service-1-0}action')
                     for action in actions:
                         print(
                             '\t\t\t- '
-                            + action.find(
-                                './{urn:schemas-upnp-org:service-1-0}name'
-                            ).text
+                            + action.find('./{urn:schemas-upnp-org:service-1-0}name').text
                         )
                         if (
-                            action.find(
-                                './{urn:schemas-upnp-org:service-1-0}name'
-                            ).text
+                            action.find('./{urn:schemas-upnp-org:service-1-0}name').text
                             == 'AddPortMapping'
                         ):
                             igd_ctr = (
@@ -402,9 +375,7 @@ def parse_locations(locations):
                                 './{urn:schemas-upnp-org:device-1-0}serviceType'
                             ).text
                         elif (
-                            action.find(
-                                './{urn:schemas-upnp-org:service-1-0}name'
-                            ).text
+                            action.find('./{urn:schemas-upnp-org:service-1-0}name').text
                             == 'Browse'
                         ):
                             cd_ctr = (
@@ -419,9 +390,7 @@ def parse_locations(locations):
                                 './{urn:schemas-upnp-org:device-1-0}serviceType'
                             ).text
                         elif (
-                            action.find(
-                                './{urn:schemas-upnp-org:service-1-0}name'
-                            ).text
+                            action.find('./{urn:schemas-upnp-org:service-1-0}name').text
                             == 'GetDeviceInfo'
                         ):
                             wps_ctr = (
@@ -437,21 +406,15 @@ def parse_locations(locations):
                             ).text
 
                 if igd_ctr and igd_service:
-                    print(
-                        '\t[+] IGD port mapping available. Looking up current mappings...'
-                    )
+                    print('\t[+] IGD port mapping available. Looking up current mappings...')
                     find_port_mappings(igd_ctr, igd_service)
 
                 if cd_ctr and cd_service:
-                    print(
-                        '\t[+] Content browsing available. Looking up base directories...'
-                    )
+                    print('\t[+] Content browsing available. Looking up base directories...')
                     find_directories(cd_ctr, cd_service)
 
                 if wps_ctr and wps_service:
-                    print(
-                        '\t[+] M1 available. Looking up device information...'
-                    )
+                    print('\t[+] M1 available. Looking up device information...')
                     find_device_info(wps_ctr, wps_service)
 
             except requests.exceptions.ConnectionError:
@@ -483,9 +446,7 @@ def discover(
             TextColumn('[progress.description]{task.description}'),
             transient=True,
         ) as progress:
-            progress.add_task(
-                description='Discovering UPnP locations', total=None
-            )
+            progress.add_task(description='Discovering UPnP locations', total=None)
             devices = upnp.discover()
 
         print(
@@ -521,9 +482,7 @@ def discover(
             TextColumn('[progress.description]{task.description}'),
             transient=True,
         ) as progress:
-            progress.add_task(
-                description='Discovering UPnP locations', total=None
-            )
+            progress.add_task(description='Discovering UPnP locations', total=None)
             locations = discover_pnp_locations()
 
         print(
@@ -546,8 +505,5 @@ def discover(
         parse_locations(locations)
 
         print(
-            '[bold green][[/bold green]'
-            '[bold yellow]*[/bold yellow]'
-            '[bold green]][/bold green]'
-            ' END.'
+            '[bold green][[/bold green][bold yellow]*[/bold yellow][bold green]][/bold green] END.'
         )
