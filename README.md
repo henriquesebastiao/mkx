@@ -90,7 +90,7 @@ $ poetry run mkx --help
 │                   (CVE-2023-30800).                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────────╯
 ╭─ OSINT - Obtaining Information ────────────────────────────────────────────────────────────╮
-│ discover          Search for devices on the network via MikroTik Neighbor Discovery        │
+│ mikrotik          Search for devices on the network via MikroTik Neighbor Discovery        │
 │                   (MNDP).                                                                  │
 │ snmp              Get information via SNMP from devices with default community (public).   │
 │ upnp              Explore devices on the network with the Universal Plug and Play (UPnP)   │

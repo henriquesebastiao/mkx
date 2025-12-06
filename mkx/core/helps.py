@@ -22,18 +22,18 @@ mkx exploit 192.168.88.1 8295
 mkx exploit server.local
 """
 
-DDOS_HTTP_HELP = """Sends arbitrary packets via TCP to the device causing CPU overload.
+DDOS_TCP_HELP = """Sends arbitrary packets via TCP to the device causing CPU overload.
 
 You can send packets to an IP address or domain, on a specific port, or on all ports from 1 to 65534 randomly.
 
 [bold green]Examples:[/bold green]
-mkx ddos http 192.168.88.1
-mkx ddos http 192.168.88.1 -rv
-mkx ddos http 192.168.88.1 8080
-mkx ddos http server.local
+mkx ddos tcp 192.168.88.1
+mkx ddos tcp 192.168.88.1 -rv
+mkx ddos tcp 192.168.88.1 8080
+mkx ddos tcp server.local
 """
 
-DISCOVER_HELP = """Search for devices on the network via MikroTik Neighbor Discovery (MNDP).
+MIKROTIK_DISCOVER_HELP = """Search for devices on the network via MikroTik Neighbor Discovery (MNDP).
 
 This command lists all discovered neighbours in Layer-2 broadcast domain.
 It shows to which interface neighbour is connected, shows its IP/MAC addresses and several MikroTik related parameters.
@@ -48,13 +48,13 @@ It is possible to discover the following information from the found devices:
 - Interface that received the MNDP packet
 
 [bold green]Examples:[/bold green]
-mkx discover
-mkx discover -t
+mkx mikrotik
+mkx mikrotik -t
 """
 
 SNMP_HELP = """Get information via SNMP from devices with default community (public).
 
-With this command it is possible to obtain various information from Mikrotik devices that have a vulnerable SNMP service.
+With this command it is possible to obtain various information from MikroTik devices that have a vulnerable SNMP service.
 As a target, you can pass an IP address, a network, or a grepable Nmap output file containing the IP addresses to search.
 
 You can scan port 161 on a network with Nmap and save the discovered hosts to a file with the command:

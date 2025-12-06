@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mkx"
 version = "0.1.2"
-description = "Tool for auditing Mikrotik routers, searching for vulnerabilities and information about the target device."
+description = "Tool for auditing MikroTik routers, searching for vulnerabilities and information about the target device."
 authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
 readme = "README.md"
 packages = [{include = "mkx"}]
@@ -29,6 +29,7 @@ pydantic = "^2.12.5"
 pysnmp = "^7.1.22"
 requests = "^2.32.5"
 upnpy = "^1.1.8"
+prompt-toolkit = "^3.0.52"
 
 
 [tool.poetry.group.dev.dependencies]
