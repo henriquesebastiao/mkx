@@ -9,8 +9,7 @@ from mkx.core.settings import __version__
 from mkx.discovery import mac_server_discover, snmp, upnp
 
 app = typer.Typer(
-    help='Tool for auditing MikroTik routers, searching '
-    'for vulnerabilities and information about the target device.',
+    help='CLI for exploring IoT and network devices.',
     no_args_is_help=True,
     rich_markup_mode='rich',
 )
@@ -32,10 +31,7 @@ app.add_typer(kill_web_server.command, name='kill-web-server', rich_help_panel='
 def get_version(value: bool):
     if value:
         print(f'[bold blue]mkx[/bold blue] version: [green]{__version__}[/green]')
-        print(
-            'Tool for auditing MikroTik routers, searching for vulnerabilities'
-            ' and information about the target device.'
-        )
+        print('CLI for exploring IoT and network devices.')
 
 
 @app.callback(
