@@ -1,6 +1,5 @@
 # MKX - Exploration of IoT and network devices
 
-[![Build](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml/badge.svg)](https://github.com/henriquesebastiao/mkx/actions/workflows/build.yml)
 [![Static Badge](https://img.shields.io/badge/status-stable-%232FBF50)](https://github.com/henriquesebastiao/mkx)
 [![GitHub Release](https://img.shields.io/github/v/release/henriquesebastiao/mkx?color=blue)](https://github.com/henriquesebastiao/mkx/releases)
 [![GitHub License](https://img.shields.io/github/license/henriquesebastiao/mkx?color=blue)](https://github.com/henriquesebastiao/mkx/blob/main/LICENSE)
