@@ -1,4 +1,4 @@
-FROM python:3.13-alpine
+FROM python:3.14-alpine
 LABEL mantainer="contato@henriquesebastiao.com"
 
 RUN apk update \
