@@ -16,6 +16,7 @@ from mkx.core.helps import UPNP_DISCOVER_HELP
 
 command = typer.Typer(
     help='Explore devices on the network with the Universal Plug and Play (UPnP) port open.',
+    no_args_is_help=True,
 )
 
 
