@@ -253,14 +253,14 @@ test = ["pytest", "pytest-xdist", "setuptools"]
 
 [[package]]
 name = "pyasn1"
-version = "0.6.2"
+version = "0.6.3"
 description = "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "pyasn1-0.6.2-py3-none-any.whl", hash = "sha256:1eb26d860996a18e9b6ed05e7aae0e9fc21619fcee6af91cca9bad4fbea224bf"},
-    {file = "pyasn1-0.6.2.tar.gz", hash = "sha256:9b59a2b25ba7e4f8197db7686c09fb33e658b98339fadb826e9512629017833b"},
+    {file = "pyasn1-0.6.3-py3-none-any.whl", hash = "sha256:a80184d120f0864a52a073acc6fc642847d0be408e7c7252f31390c0f4eadcde"},
+    {file = "pyasn1-0.6.3.tar.gz", hash = "sha256:697a8ecd6d98891189184ca1fa05d1bb00e2f84b5977c481452050549c8a72cf"},
 ]
 
 [[package]]
@@ -436,21 +436,21 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pysnmp"
-version = "7.1.22"
+version = "7.1.25"
 description = "A Python library for SNMP"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "pysnmp-7.1.22-py3-none-any.whl", hash = "sha256:57e704a6ba2bbf571d16cd5dc08b89bb3fa0ebeb5f4f26b87fececad3b3de7a6"},
-    {file = "pysnmp-7.1.22.tar.gz", hash = "sha256:37ac595c7f0c1c00514505939b4dcf5b4fd5a9ffe51b0349f60bb640c11b0f77"},
+    {file = "pysnmp-7.1.25-py3-none-any.whl", hash = "sha256:561f3870b0c186375d78554d8e25ea6676671b2d58c628c1fb845b9dc85ee7a9"},
+    {file = "pysnmp-7.1.25.tar.gz", hash = "sha256:e75528ffe9550fb6a920f14095eb446b03824c8737ecc06c9bac45a18adb81a9"},
 ]
 
 [package.dependencies]
-pyasn1 = ">=0.4.8,<0.5.0 || >0.5.0"
+pyasn1 = ">=0.6.3"
 
 [package.extras]
-dev = ["Sphinx (>=7.0.0,<8.0.0)", "bump2version (>=1.0.1)", "codecov (>=2.1.12)", "cryptography (>=44.0.1)", "doc8 (>=1.0.0)", "flake8 (>=7.0.0)", "furo (>=2023.1.1)", "jinja2 (>=3.1.6)", "pep8-naming (>=0.14.1)", "pre-commit (==2.21.0)", "pysmi (>=1.6.1)", "pytest (>=7.2.0)", "pytest-asyncio (>=0.21.1)", "pytest-codecov (>=0.4.0)", "pytest-cov (>=4.1.0)", "ruff (>=0.11.7)", "sphinx-copybutton (>=0.5.2)", "sphinx-notfound-page (>=1.0.0)", "sphinx-polyversion (>=1.0.0)", "sphinx-sitemap-lextudio (>=2.5.2)"]
+dev = ["Sphinx (>=7.0.0,<8.0.0)", "bump2version (>=1.0.1)", "codecov (>=2.1.12)", "cryptography (>=44.0.1)", "doc8 (>=1.0.0)", "flake8 (>=7.0.0)", "furo (>=2023.1.1)", "jinja2 (>=3.1.6)", "pep8-naming (>=0.14.1)", "pre-commit (==2.21.0)", "pysmi (>=1.6.1)", "pytest (>=7.2.0)", "pytest-asyncio (>=0.21.1)", "pytest-codecov (>=0.4.0)", "pytest-cov (>=4.1.0)", "pytest-rerunfailures (>=12.0,<13.0)", "ruff (>=0.11.7)", "sphinx-copybutton (>=0.5.2)", "sphinx-notfound-page (>=1.0.0)", "sphinx-polyversion (>=1.0.0)", "sphinx-sitemap-lextudio (>=2.5.2)", "tomli (>=2.0.1,<3.0.0) ; python_version < \"3.11\""]
 
 [[package]]
 name = "rich"
