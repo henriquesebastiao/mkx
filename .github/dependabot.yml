@@ -17,9 +17,3 @@ updates:
       interval: "daily"
     assignees:
       - "henriquesebastiao"
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    assignees:
-      - "henriquesebastiao"
