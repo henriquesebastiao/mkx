@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mkx"
-version = "0.2.2"
+version = "0.2.3"
 description = "CLI for exploring IoT and network devices."
 authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
 readme = "README.md"
