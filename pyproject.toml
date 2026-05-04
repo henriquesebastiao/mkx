@@ -24,9 +24,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.13"
-typer = ">=0.21,<0.25"
-pydantic = "^2.12.5"
-pysnmp = "^7.1.22"
+typer = ">=0.24,<0.25"
+pydantic = "^2.13.3"
+pysnmp = "^7.1.26"
 upnpy = "^1.1.8"
 prompt-toolkit = "^3.0.52"
 httpx = "^0.28.1"
@@ -34,7 +34,7 @@ httpx = "^0.28.1"
 
 [tool.poetry.group.dev.dependencies]
 taskipy = "^1.14.1"
-ruff = ">=0.15.5,<0.16.0"
+ruff = ">=0.15.12,<0.16.0"
 
 [tool.poetry.scripts]
 mkx = "mkx.cli:app"
