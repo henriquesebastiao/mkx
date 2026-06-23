@@ -1,10 +1,10 @@
-[tool.poetry]
+[project]
 name = "mkx"
 version = "0.2.3"
-description = "CLI for exploring IoT and network devices."
-authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
-readme = "README.md"
-packages = [{include = "mkx"}]
+description = "CLI for exploring IoT and network devices"
+authors = [
+    {name = "Henrique Sebastião", email = "contato@henriquesebastiao.com"},
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
@@ -17,31 +17,33 @@ classifiers = [
     "Topic :: Security",
     "Topic :: Internet"
 ]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "httpx>=0.28.1",
+    "prompt-toolkit>=3.0.52",
+    "pydantic>=2.13.4",
+    "pysnmp>=7.1.27",
+    "typer>=0.26.7",
+    "upnpy>=1.1.8",
+]
 
-[tool.poetry.urls]
-"Repository" = "https://github.com/henriquesebastiao/mkx"
-"Bug Tracker" = "https://github.com/henriquesebastiao/mkx/issues"
+[dependency-groups]
+dev = [
+    "ruff>=0.15.18",
+    "taskipy>=1.14.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.13"
-typer = ">=0.24,<0.25"
-pydantic = "^2.13.3"
-pysnmp = "^7.1.26"
-upnpy = "^1.1.8"
-prompt-toolkit = "^3.0.52"
-httpx = "^0.28.1"
-
-
-[tool.poetry.group.dev.dependencies]
-taskipy = "^1.14.1"
-ruff = ">=0.15.12,<0.16.0"
-
-[tool.poetry.scripts]
+[project.scripts]
 mkx = "mkx.cli:app"
 
+[tool.uv]
+upgrade = true
+package = true
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [tool.ruff]
 line-length = 99
