@@ -1,6 +1,6 @@
 [project]
 name = "mkx"
-version = "0.2.3"
+dynamic = ["version"]
 description = "CLI for exploring IoT and network devices"
 authors = [
     {name = "Henrique Sebastião", email = "contato@henriquesebastiao.com"},

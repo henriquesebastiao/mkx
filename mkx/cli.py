@@ -5,7 +5,7 @@ from rich import print
 from rich.console import Console
 
 from mkx.attacks import ddos, exploit, kill_web_server
-from mkx.core.settings import __version__
+from mkx import __version__
 from mkx.discovery import mac_server_discover, snmp, upnp
 
 app = typer.Typer(
